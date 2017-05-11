@@ -1,55 +1,67 @@
-/*(function(){
-    $(".accardion li .title").click(function(){
-        $(".active").removeClass("active");
-        //$(".description").slideUp(1000);
-        $(this).parent("li").addClass("active");
-        $(this).siblings(".description").slideToggle(500);
-    });
-})();*/
-
-var li = document.getElementsByTagName("li");
-
-for(var i = 0; i < li.length; i++){
+function sum(){
+    let result = 0;
     
-    li[i].onclick = function(){
-        var desc = this.querySelector(".description");
-        //если есть вложенность 
-        if(desc != null){
-            //проверяем на класс active
-            if(this.hasAttributes("class", "active")){
-                this.removeAttribute("class");
-                desc.style.display = "none";
-            }else{
-                this.setAttribute("class", "active");
-                desc.style.display = "block";
-            }
+    for(let i = 0; i < arguments.length; i++){
+        result += arguments[i];
+    }
+    
+    return result;
+}
+
+function filter(source, fn){
+    let arr = [];
+    
+    for(let i = 0; i < source.length; i++){
+        if(fn(source[i])){
+            arr.push(source[i]);
         }
-    };
+    }
+    
+    return arr;
+}
+
+function foo(param){
+    return param > 4;
 }
 
 
-function removeClass(){
-    for(var i = 0; i<li.length; i++){
-        li[i].removeAttribute("class");
+function rec(a){
+    console.log(a);
+    a += 1;
+    if(a < 1000){
+        rec(a);
     }
 }
 
-/*function countClick(){
-    var count = 0;
-    return function(){
-        return count++;
+
+//стрелочные функции
+
+let func1 = () => {
+    console.log(25);
+}
+
+/*
+
+написать рекурсивную функцию, которая выводит все значения массива на экран (ниже описание)
+Напишите модуль, который экспортирует функцию с именем `consoleRec`. Функция должна **рекурсивно** выводить элементы массива на экран. Запрещено использовать циклы и методы для работы с массивами. Функция должна принимать два аргумента: массив и… что-то еще. Что именно - остается на ваше усмотрение. Пример вызова:
+
+consoleRec(['я', 'умею', 'писать', 'рекурсивные', 'функции'], ???);
+должна вывести на экран:
+я
+умею
+писать
+рекурсивные
+функции
+
+
+*/
+
+function consoleRec(arr, i){
+    console.log(arr[i++]);
+    if(arr[i] !== undefined){
+        consoleRec(arr, i);
     }
 }
 
-var cnt = countClick();
-
-document.body.onclick = function(){
-    console.log(cnt());
-};*/
-
-function hideDesc(){
-    var desc = document.querySelectorAll(".description");
-    for(var i = 0; i < desc.length; i++ ){
-        desc[i].style.display = "none";
-    }
-}
+let array = ['я', 'умею', 'писать', 'рекурсивные', 'функции'];
+consoleRec(array, 0);
