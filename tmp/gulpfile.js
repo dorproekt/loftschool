@@ -10,6 +10,15 @@ var imagemin = require('gulp-imagemin');
 var fontmin = require('gulp-fontmin');
 var gutil = require('gulp-util');
 var ftp = require('gulp-ftp');
+var babel = require("gulp-babel");
+
+gulp.task("babel", function () {
+  return gulp.src("dev/babel/main.js")
+    .pipe(babel({
+            presets: ['es2015']
+        }))
+    .pipe(gulp.dest("dev/js/"));
+});
  
 gulp.task('ftp', function () {
     return gulp.src('public/**/*')
@@ -73,6 +82,7 @@ return gulp.src('dev/sass/**/*.scss')
 //watch
 gulp.task('watch', function(){
   gulp.watch('dev/sass/**/*.scss', ['sass']); 
+  gulp.watch('dev/babel/**/*.js', ['babel']); 
 });
 
 //build

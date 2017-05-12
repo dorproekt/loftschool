@@ -1,67 +1,48 @@
-function sum(){
-    let result = 0;
+//обработка ошибок
+
+console.log("Простое сообщение");
+console.log("Простое сообщение","еще","ttt");
+console.log("Простое сообщение с форматированием: %s, %s","еще","ttt");
+console.info("info");
+console.warn("warning");
+console.error("error");
+
+console.time("1");
+    for(let i = 0; i < 20000000; i++){
+
+    }
+console.timeEnd("1");
+
+function f1(){
+    console.log(1);
     
-    for(let i = 0; i < arguments.length; i++){
-        result += arguments[i];
+    function f2(){
+        console.log(2);
+        console.trace("стек");
     }
     
-    return result;
-}
-
-function filter(source, fn){
-    let arr = [];
+    f2();
     
-    for(let i = 0; i < source.length; i++){
-        if(fn(source[i])){
-            arr.push(source[i]);
-        }
+    console.log(3);
+}
+console.profile("Профайл");
+    f1();
+console.profileEnd();
+
+
+function div(a, b){
+    if(b === 0){
+        throw new Error("На ноль делить нельзя!");
     }
-    
-    return arr;
-}
-
-function foo(param){
-    return param > 4;
-}
-
-
-function rec(a){
-    console.log(a);
-    a += 1;
-    if(a < 1000){
-        rec(a);
+    if(b < 0){
+        throw new Error("На отрицательное число делить нельзя");
     }
+    return a/b;
 }
-
-
-//стрелочные функции
-
-let func1 = () => {
-    console.log(25);
+try{
+    //debugger; 
+    let res = div(24, -5);
+    console.log(res);
+}catch(e){
+    console.error(e.message);
 }
-
-/*
-
-написать рекурсивную функцию, которая выводит все значения массива на экран (ниже описание)
-Напишите модуль, который экспортирует функцию с именем `consoleRec`. Функция должна **рекурсивно** выводить элементы массива на экран. Запрещено использовать циклы и методы для работы с массивами. Функция должна принимать два аргумента: массив и… что-то еще. Что именно - остается на ваше усмотрение. Пример вызова:
-
-consoleRec(['я', 'умею', 'писать', 'рекурсивные', 'функции'], ???);
-должна вывести на экран:
-я
-умею
-писать
-рекурсивные
-функции
-
-
-*/
-
-function consoleRec(arr, i){
-    console.log(arr[i++]);
-    if(arr[i] !== undefined){
-        consoleRec(arr, i);
-    }
-}
-
-let array = ['я', 'умею', 'писать', 'рекурсивные', 'функции'];
-consoleRec(array, 0);
