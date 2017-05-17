@@ -215,10 +215,32 @@ function deepEqual(objA, objB){
         
         //есть ли свойство об. А в об. Б
         if(objB.hasOwnProperty(keysObjA[i])){
-            
+
             //если свойства не равны
             if(objB[keysObjA[i]] !== objA[keysObjA[i]]){
-                return 3;
+                
+                //если массив
+                if(objB[keysObjA[i]] instanceof Array && objA[keysObjA[i]] instanceof Array){
+                    let arrA = objA[keysObjA[i]];
+                    let arrB = objB[keysObjA[i]];
+                                    
+                    //если разная длинна массива
+                    if(arrA.length !== arrB.length){
+                        return 7;
+                    }
+                    
+                    //если значения не равны
+                    for(let i = 0; i < arrA.length; i++){
+                        if(arrA[i] !== arrB[i]){
+                            return 9;
+                        }
+                    }
+                    
+                }else{
+                    return 8;
+                }
+                
+            
             }
             
         }else{
@@ -232,17 +254,17 @@ function deepEqual(objA, objB){
 let a = {
     a: "tt",
     b: 22,
-    d: true
+    e: [1,2]
 };
 
 let b = {
     a: "tt",
     b: 22,
-    d: true
+    e: [1,2]
 };
 
-//console.log(deepEqual(a, b));
+console.log(deepEqual(a, b));
 
-var arr = [1, 2, 3];
+/*var arr = [1, 2, 3];
 
-console.log(arr instanceof Array);
+console.log(arr instanceof Array);*/
