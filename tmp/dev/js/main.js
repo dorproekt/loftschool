@@ -1,40 +1,58 @@
-let url1 = "https://i.ytimg.com/vi/GTSK1PdcNk0/maxresdefault.jpg";
-let url2 = "https://hi-news.ru/wp-content/uploads/2017/01/space-wallpaper-1366x768-650x365.jpg";
-let url3 = "https://inform-ua.info/uploads/2017/01/kosmos-2-14838625499667.jpg";
+//ajax
+/*document.querySelector("#sendAjax").addEventListener("click", () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "test.txt");
+    xhr.addEventListener("load", () => {
+        console.log("Ответ получен", xhr.responseText);
+        document.body.innerText = xhr.responseText;
+    });
+    
+    xhr.send();
+});*/
 
-//pending - ожидание
-//fulfilled - выполнено
-//rejected - выполнено с ошибкой
-function loadImg(url){
+//promis ajax
+/*function sendAjax(url){
     return new Promise((resolve, reject) => {
-        let i = new Image();
-        i.src = url;
-        document.body.appendChild(i);
-
-        i.addEventListener("load", () => {
-            resolve();
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.addEventListener("load", () => {
+            resolve(xhr.responseText);
         });
-
-        i.addEventListener("error", () => {
+        xhr.addEventListener("error", () => {
             reject();
         });
+    
+        xhr.send();
     });
 }
 
-let p = loadImg(url1);
+myButton.addEventListener("click", () => {
+    sendAjax("test.txt").then((responseText) => {
+        console.log(responseText);
+    });
+});*/
 
-p.then(
-    () => {
-        console.log("Картинка 1 загружена");
-        return loadImg(url2);
-    }
-).then(
-    () => {
-        console.log("Картинка 2 загружена");
-        return loadImg(url3);
-    }
-).then(
-    () => {
-        console.log("Картинка 3 загружена");
-    }
-);
+//json
+
+function sendAjax(url){
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.addEventListener("load", () => {
+            resolve(xhr.responseText);
+        });
+        xhr.addEventListener("error", () => {
+            reject();
+        });
+    
+        xhr.send();
+    });
+}
+
+myButton.addEventListener("click", () => {
+    sendAjax("data.json").then((responseText) => {
+        let result = JSON.parse(responseText);
+        //JSON.parse(responseText);
+        console.log(result);
+    });
+});
