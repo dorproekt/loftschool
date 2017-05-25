@@ -1,56 +1,40 @@
-/*‘оздать страницу с кнопкой. При клике на кнопку, на странице должен создаваться div произвольных размеров, в произвольном месте.
-–вет фона div'а должен быть каждый раз случайным.
-‘озданные div'ы можно перетаскивать мышкой (drag & drop)*/
+let url1 = "https://i.ytimg.com/vi/GTSK1PdcNk0/maxresdefault.jpg";
+let url2 = "https://hi-news.ru/wp-content/uploads/2017/01/space-wallpaper-1366x768-650x365.jpg";
+let url3 = "https://inform-ua.info/uploads/2017/01/kosmos-2-14838625499667.jpg";
 
+//pending - ожидание
+//fulfilled - выполнено
+//rejected - выполнено с ошибкой
+function loadImg(url){
+    return new Promise((resolve, reject) => {
+        let i = new Image();
+        i.src = url;
+        document.body.appendChild(i);
 
-function createSqueare(){
-    let container = document.querySelector(".container");
-    let elem = document.createElement("div");
-    let randomNumber = window.Math.round(window.Math.random()*1000000);
-    
-    elem.className = "item";
-    elem.style.width = "100px";
-    elem.style.height = "100px";
-    elem.style.background = "#"+randomNumber;
-    elem.style.float = "left";
-    elem.style.border = "solid 1px red";
+        i.addEventListener("load", () => {
+            resolve();
+        });
 
-    container.appendChild(elem);  
+        i.addEventListener("error", () => {
+            reject();
+        });
+    });
 }
 
-createSqueare();
+let p = loadImg(url1);
 
-document.getElementById("createSqueare").addEventListener("click", createSqueare);
-
-
-//drag & drop
-
-let activeElement;
-let offsetX = 0;
-let offsetY = 0;
-let container = document.querySelector(".container");
-
-let mDown = (e) => {
-    console.log("Нажали кнопку мыши");
-    activeElement = e.target;
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-}
-
-let mUp = (e) => {
-    console.log("Отпустили кнопку миши");
-    activeElement = null;
-}
-
-let mMove = (e) => {
-    if(activeElement){
-        activeElement.style.position = "absolute";
-        activeElement.style.top = (e.clientY - offsetY) + "px";
-        activeElement.style.left = (e.clientX - offsetX) + "px";
+p.then(
+    () => {
+        console.log("Картинка 1 загружена");
+        return loadImg(url2);
     }
-}
-
-
-container.addEventListener("mousedown", mDown);
-container.addEventListener("mouseup", mUp);
-document.addEventListener("mousemove", mMove);
+).then(
+    () => {
+        console.log("Картинка 2 загружена");
+        return loadImg(url3);
+    }
+).then(
+    () => {
+        console.log("Картинка 3 загружена");
+    }
+);
