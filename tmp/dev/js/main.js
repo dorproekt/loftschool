@@ -1,58 +1,27 @@
-//ajax
-/*document.querySelector("#sendAjax").addEventListener("click", () => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "test.txt");
-    xhr.addEventListener("load", () => {
-        console.log("Ответ получен", xhr.responseText);
-        document.body.innerText = xhr.responseText;
-    });
-    
-    xhr.send();
-});*/
+/*
 
-//promis ajax
-/*function sendAjax(url){
-    return new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.addEventListener("load", () => {
-            resolve(xhr.responseText);
-        });
-        xhr.addEventListener("error", () => {
+1. ДЗ 1:
+Создать модуль, который экспортирует функцию `timer`.
+Функция `timer` должна возвращать новый промис.
+Функция `timer` принимает 1 аргумент - количество миллисекунд, через которые промис должен перейти в состояние `fulfilled`.
+Пример использования:
+timer(3000).then(() => console.log('я вывелась через 3 секунды'))
+
+*/
+
+function timer(time){
+    return promise = new Promise(function(resolve, reject){
+        if(time){
+            setInterval(() => {
+                resolve(time);
+            }, time);
+        }else{
             reject();
-        });
-    
-        xhr.send();
+        }
     });
 }
 
-myButton.addEventListener("click", () => {
-    sendAjax("test.txt").then((responseText) => {
-        console.log(responseText);
-    });
-});*/
 
-//json
-
-function sendAjax(url){
-    return new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.addEventListener("load", () => {
-            resolve(xhr.responseText);
-        });
-        xhr.addEventListener("error", () => {
-            reject();
-        });
-    
-        xhr.send();
-    });
-}
-
-myButton.addEventListener("click", () => {
-    sendAjax("data.json").then((responseText) => {
-        let result = JSON.parse(responseText);
-        //JSON.parse(responseText);
-        console.log(result);
-    });
+timer(5000).then(function(val){
+    console.log("Я вызвалась через "+val/1000+" с.");
 });
