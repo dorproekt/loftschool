@@ -1,72 +1,59 @@
 /*
+    BOM
+*/
 
-3. ДЗ 3 (со звездочкой):
-Создать страничку с текстовым полем.
-После загрузки странички, загрузить список городов при помощи AJAX.
-При вводе текста в тестовое поле, выводить под текстовым полем список тех городов, в названиях которых есть введенный текст.
-Использование промисов обязательно.
-Запрещено использование любых библиотек (включая jQuery) и фреймворков.
+/*
+
+1. ДЗ 1:
+Создать страницу, которая выводит все имеющиеся cookie в виде таблицы (имя, значение).
+Для каждой cookie в таблице, необходимо добавить кнопку "удалить", При нажатии на "удалить", на экран должен быть выведен confirm с текстом "Удалить cookie с именем …?". Вместо … необходимо подставить имя удаляемой cookie. Если пользователь ответил положительно, то соответствующая cookie должна быть удалена.
 
 */
 
+document.querySelector(".container h2").innerText = "Cookies";
+let container = document.querySelector(".container");
 
-let myInput = document.getElementById("myInput");
-let href = "https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json";
-let container = document.querySelector("ul.result-search");
+//Все куки
+let allCookies = document.cookie;
 
-function removeValue(e){
-    e.target.setAttribute("value", "");
+//разбивка на массив всех кук
+let arrCookies = allCookies.split("; ");
+
+//создание таблицы в контейнере
+let table = document.createElement("table");
+table.className = "cookies";
+container.appendChild(table);
+let tHead = "<tr><th>Название:</th><th>Значение:</th><th>Удалить:</th></tr>";
+table.innerHTML = tHead;
+
+//вывод куки на странице
+for(let item of arrCookies){
+    let arrRes = item.split("=");
+    let tr = document.createElement("tr");
+    tr.innerHTML = "<td>"+arrRes[0]+"</td><td>"+arrRes[1]+"</td><td><button class='removeCookie' value="+arrRes[0]+" data-cookie="+item+">Удалить куку</button></td>";
+    table.appendChild(tr);
 }
-
-function getCity(href){
-    return new Promise((resolve, reject) => {
-        
-        let xhr = new XMLHttpRequest();
-        
-        if(xhr){
-            xhr.open("GET", href);
-            xhr.onload = () => {
-                resolve(xhr.responseText);
-            };
-            xhr.send();
-        }else{
-            reject("err");
-        }
-       
-    });
-}
-
-myInput.addEventListener("focus", removeValue);
 
 window.addEventListener("load", () => {
-    getCity(href).then((val) => {
-        
-        let result = JSON.parse(val);
-        
-        let arrCity = [];
-        for(let city of result){
-            arrCity.push(city["name"].toLowerCase());
+    let btnRemoveCookies = document.querySelectorAll(".removeCookie");
+    
+    for(let i = 0; i < btnRemoveCookies.length; i++){
+        btnRemoveCookies[i].addEventListener("click", removeCookie);
+    }
+    
+    //удаление куки
+    function removeCookie(e){
+        let name = e.target.value;
+        let cookie = e.target.getAttribute("data-cookie");
+        let del = confirm("Удалить cookie с именем " +e.target.value);
+        if(del){
+            document.cookie = cookie+";expires="+new Date(1);
+            let tr = e.target.parentElement.parentElement;
+            tr.remove();
         }
 
-        myInput.addEventListener("keypress", (e) => {
-            container.innerHTML = "";
-            let searchValue = e.target.value + e.key;
-            let resArr = [];
-            for(let item of arrCity){
-                if(item.substr(0, searchValue.length) === searchValue){
-                    resArr.push(item);
-                }
-            }
-            if(resArr.length){
-                for(let item of resArr){
-                    container.innerHTML += "<li><a href='#"+item+"'>"+item+"</a></li>"; 
-                }
-            }
-            
-        });
-        
-        
-    }, (value) => {
-         console.log(value);
-    });
+    }
+    
+    
 });
+
