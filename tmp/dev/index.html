@@ -8,15 +8,33 @@
     <!-- build:css css/main.min.css -->
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild -->
-</head>
-<body>
-    <input type="button" id="createSqueare" value="Создать элемент">
-    <input type="button" id="save" value="Сохранить">
-   <div class="container">
-       
-   </div>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.8/handlebars.min.js"></script>
+    <script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
     <!-- build:js js/main.min.js -->   
     <script src="js/main.js"></script>
     <!-- endbuild -->
+</head>
+<body>
+   <div class="container">
+       <h1 id="headerInfo"></h1>
+       <div id="results"></div>
+   </div>
+   <script type="text/x-handlebars-template" id="videoVkTmp">
+        {{#each list}}
+            <div class="media">
+              <div class="media-left">
+                <a href="{{player}}" target="_blank">
+                  <img class="media-object" src="{{image}}" alt="{{title}}">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{title}}</h4>
+                {{formatTime duration}}
+              </div>
+            </div>
+       {{/each}}
+   </script>
 </body>
 </html>

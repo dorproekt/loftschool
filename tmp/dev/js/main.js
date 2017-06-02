@@ -1,98 +1,69 @@
-function createSqueare(){
-    let container = document.querySelector(".container");
-    let elem = document.createElement("div");
-    let randomNumber = window.Math.round(window.Math.random()*1000000);
+Handlebars.registerHelper('formatTime', time => {
+    let minutes = parseInt(time/60);
+    let seconds = time - minutes*60;
     
-    elem.className = "item";
-    elem.style.width = "100px";
-    elem.style.height = "100px";
-    elem.style.background = "#"+randomNumber;
-    elem.style.float = "left";
-    elem.style.border = "solid 1px red";
-
-    container.appendChild(elem);  
-}
-
-//createSqueare();
-
-document.getElementById("createSqueare").addEventListener("click", createSqueare);
-
-
-//drag & drop
-
-let activeElement;
-let offsetX = 0;
-let offsetY = 0;
-let container = document.querySelector(".container");
-
-let mDown = (e) => {
-    //console.log("Нажали кнопку мыши");
-    activeElement = e.target;
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-}
-
-let mUp = (e) => {
-    //console.log("Отпустили кнопку миши");
-    activeElement = null;
-}
-
-let mMove = (e) => {
-    if(activeElement){
-        activeElement.style.position = "absolute";
-        activeElement.style.top = (e.clientY - offsetY) + "px";
-        activeElement.style.left = (e.clientX - offsetX) + "px";
-    }
-}
-
-
-container.addEventListener("mousedown", mDown);
-container.addEventListener("mouseup", mUp);
-document.addEventListener("mousemove", mMove);
-
-
-function savePage(){
-    let items = document.querySelectorAll(".item");
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
     
-    let str = "";
-    for(let i = 0; i < items.length; i++){
-        str += items[i].style.background+"-"+items[i].style.top+"-"+items[i].style.left+"|";
-    }
-    
-    document.cookie = "squ="+str+";";
-}
-
-window.addEventListener("load", () => {
-    let arrCookie = document.cookie.split(";");
-    
-    for(let item of arrCookie){
-        if(item.indexOf("squ") !== -1){
-            let startData = item.indexOf("=")+1;
-            let endData = item.lastIndexOf("|")-5;
-            let newStr = item.substr(startData, endData);
-            let itemArr = newStr.split("|");
-            
-            let container = document.querySelector(".container");
-    
-            for(let i = 0; i < itemArr.length; i++){
-                let elem = document.createElement("div");
-                let prop = itemArr[i].split("-");
-                console.log(prop);
-                elem.className = "item";
-                elem.style.width = "100px";
-                elem.style.height = "100px";
-                elem.style.background = prop[0];
-                elem.style.top = prop[1];
-                elem.style.left = prop[2];
-                elem.style.position = "absolute";
-                elem.style.float = "left";
-                elem.style.border = "solid 1px red";
-
-                container.appendChild(elem);
-            }
-        }
-    }
-    
+    return minutes + ':' + seconds;
 });
 
-save.addEventListener("click", savePage);
+
+Handlebars.registerHelper('dateFormat', date => {
+    let resDate = new Date(date);
+    return resDate;
+});
+
+new Promise((resolve) => {
+    if(document.readyState == "complete"){
+        resolve();
+    }else{
+        window.addEventListener("load", resolve);
+    }
+}).then(() => {
+    return new Promise((resolve, reject) => {
+        VK.init({  
+            apiId: 6054796
+        });
+
+        VK.Auth.login(function(response) {
+            if (response.session) {
+                resolve(response);
+            } else { 
+                reject(new Error("Не удалось авторизироваться"));
+            } 
+        }, 8 | 4 | 16);
+    });
+}).then(() => {
+    return new Promise((resolve, reject) => {
+        VK.api("users.get", {"name_case" : "gen"}, response => {
+            if(response.error){
+                reject(new Error(response.error.error_msg));
+            }else{
+                let userData = response.response[0];
+                headerInfo.innerHTML = "Видео на странице "+userData.first_name+" "+userData.last_name;
+                resolve();
+            }
+        });
+
+    });
+}).then(() => {
+    return new Promise((resolve, reject) => {
+        VK.api("video.get", {}, response => {
+            if(response.error){
+                reject(new Error(response.error.error_msg));
+            }else{ 
+                response.response.shift();
+                //console.log(response.response);
+                let sourse = document.querySelector("#videoVkTmp").innerHTML;
+                let templateFn = Handlebars.compile(sourse);
+                let template = templateFn({list: response.response})
+                
+                results.innerHTML = template;
+                resolve();
+            }
+        });
+    });
+}).catch((e) => {
+    console.error(e.message);
+});  
