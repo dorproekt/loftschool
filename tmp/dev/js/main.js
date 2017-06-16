@@ -1,35 +1,27 @@
 let save = document.querySelector("#save");
-let fSize = document.querySelector("#fS");
-let bgColor = document.querySelector("#bgC");
-let fontColor = document.querySelector("#fC");
-let wrap = document.querySelector("#wrap");
+let load = document.querySelector("#load");
 
-document.addEventListener("keyup", e => {
-    applyStyles();
-});
-
-save.addEventListener("click", () => {
-    let url = "/"+fSize.value+"/"+bgColor.value+"/"+fontColor.value;
-    //console.log(url);
-    history.pushState({
-        fSize: fSize.value,
-        bgColor: bgColor.value,
-        fontColor: fontColor.value
-    }, "new", url);  
-});
-
-window.addEventListener("popstate", e => {
-    console.log(e);
+save.addEventListener("click", (e) => {
+    e.preventDefault();
     
-    fSize.value = e.state.fSize;
-    bgColor.value = e.state.bgColor;
-    fontColor.value = e.state.fontColor;
+    let name = document.querySelector("#name").value;
+    let lastName = document.querySelector("#lastName").value;
+    let text = document.querySelector("#text").value;
     
-    applyStyles();
+    localStorage.someData = JSON.stringify({
+        name: name,
+        lastName: lastName,
+        text: text
+    });
+
 });
 
-function applyStyles(){
-    wrap.style.fontSize = fSize.value;
-    wrap.style.backgroundColor = bgColor.value;
-    wrap.style.color = fontColor.value;
-}
+load.addEventListener("click", e => {
+    e.preventDefault();
+    let data = JSON.parse(localStorage.someData);
+    //console.log(data);
+    
+    document.querySelector("#name").value = data.name;
+    document.querySelector("#lastName").value = data.lastName;
+    document.querySelector("#text").value = data.text;
+})

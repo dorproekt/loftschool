@@ -5,6 +5,8 @@
     <title>HTML5 API</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="description">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- build:css css/main.min.css -->
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild -->
@@ -13,13 +15,23 @@
 <body>
     <h1>HTML5</h1>
     
-        Размер шрифта: <input type="text" value="16px" id="fS"><br>
-        Цвет фона: <input type="text" value="#eee" id="bgC"><br>
-        Цвет шрифта: <input type="text" value="#000" id="fC"><br>
-        <input type="button" value="Сохранить" id="save">
-    <div id="wrap">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia voluptatibus repudiandae doloremque laudantium, eveniet incidunt magni eius, error minima mollitia dolorem doloribus, ipsa repellendus accusantium. Culpa, eius? Aut aperiam iure provident illo recusandae, omnis nemo quisquam, accusantium quia, fugiat incidunt. Expedita quod reiciendis velit, assumenda vel totam natus, cupiditate laborum magnam delectus in nam itaque tempore quo impedit laboriosam! Impedit commodi aliquam, dolor illum culpa! Molestias optio error accusantium explicabo maiores excepturi, consequatur quam ipsam iusto omnis culpa iure mollitia ut placeat veritatis hic dolorem, reprehenderit tempora, nobis illo fuga obcaecati? Porro dicta, autem sed, asperiores voluptatibus perspiciatis explicabo quos aliquam soluta inventore nulla aspernatur mollitia temporibus facilis natus! Eius minus eligendi, autem dolor sequi corporis, quo, facere hic porro aliquam impedit neque! Sunt atque explicabo exercitationem consectetur facere repellendus odio quisquam debitis aliquid, quae illo. Laborum aliquam ipsam hic perferendis, pariatur deleniti dolorem voluptatum minima cumque eligendi porro qui ipsa maiores obcaecati ea, ducimus sit a atque iste? Earum reprehenderit, porro debitis nam adipisci in labore ipsa voluptatibus, recusandae rerum repellendus similique, cum fugit modi provident qui dignissimos iusto. Saepe officiis ullam aliquam eligendi, error eaque rerum hic minima non. Nisi hic et repellendus ullam, magnam nihil sequi ut earum repellat quam soluta architecto veritatis, nostrum aspernatur mollitia consectetur, dolorem possimus obcaecati sapiente, expedita consequatur corporis eligendi excepturi. Obcaecati provident fugiat sunt sint voluptas totam optio illo eos ab impedit molestias distinctio commodi laborum, veniam exercitationem quae! Nulla, sed hic vel labore adipisci facere maiores? Repellendus nesciunt nemo eligendi officiis dolores, reiciendis blanditiis, illum, non tenetur eaque ea eos laborum? Blanditiis porro, dolores, impedit tempore, sed autem earum aliquid, expedita in modi sunt officiis voluptatem deleniti. Quibusdam autem, cumque dolore ad molestiae corporis harum exercitationem sapiente cupiditate quos! Aperiam nulla quisquam illo minima temporibus ad, laboriosam quo error maxime nam facilis ex assumenda repellendus sequi, dignissimos autem consequuntur voluptatum qui. Libero fuga magni facere, minima error optio suscipit voluptatem facilis esse tempore, voluptatibus saepe repellendus excepturi! Doloribus sint saepe dolorem repellat perspiciatis quidem aspernatur, quae delectus nemo sunt ducimus totam voluptatum illo aut ex ipsum cupiditate deserunt alias atque magnam voluptate! Quo enim repellat quas sequi. Rem nam aliquid et assumenda molestias optio sunt aut, obcaecati, praesentium quod incidunt aliquam amet facilis. Labore id quaerat sapiente consequatur quis molestias qui pariatur distinctio suscipit doloribus. Fugiat quis ab dolore iusto quae minima corrupti omnis nemo ea quia veniam, pariatur sequi. Error voluptatibus qui a reprehenderit quo, quos itaque, blanditiis vitae sequi quis sit, quasi ea quas ipsum recusandae debitis! Consequuntur unde atque ipsa cum sapiente quis adipisci neque, dolorem harum ducimus molestias in, ea, facere nemo? Debitis, nesciunt at totam velit rem excepturi, eos ea quod eligendi maiores, expedita consequatur. Tenetur iusto recusandae consequuntur! Eaque veniam nobis illo incidunt, qui totam delectus quis repellendus vel iusto ullam accusamus id facilis saepe tempore rem officia, vero quibusdam optio quae distinctio. Ad laboriosam numquam fugiat dolorem architecto dicta blanditiis nihil aut repellat accusamus facere, nostrum illo cupiditate illum placeat, minus mollitia! Harum.
-    </div>
+        <div class="container">
+            <form>
+                    <p>Имя:</p>
+                    <input type="text" class="form-control" id="name">
+                    <p>Фамилия:</p>
+                    <input class="form-control" type="text"  id="lastName">
+                    <p>Текст:</p>
+                    <textarea class="form-control" rows="3" id="text"></textarea>
+              <div class="checkbox">
+                <label>
+                     <input  type="checkbox"> Check me out
+                </label>
+              </div>
+              <button type="submit" class="btn btn-default" id="save">Сохранить</button>
+              <button type="submit" class="btn btn-success" id="load">Загрузить</button>
+            </form>
+        </div>
     
     <!-- build:js js/main.min.js -->   
     <script src="js/main.js"></script>
