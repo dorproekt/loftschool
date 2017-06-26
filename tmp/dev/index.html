@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>HTML5 API</title>
+    <title>Другофильтр</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="description">
     <!-- Latest compiled and minified CSS -->
@@ -13,26 +13,101 @@
 
 </head>
 <body>
-    <h1>HTML5</h1>
-    
-        <div class="container">
-            <form>
-                    <p>Имя:</p>
-                    <input type="text" class="form-control" id="name">
-                    <p>Фамилия:</p>
-                    <input class="form-control" type="text"  id="lastName">
-                    <p>Текст:</p>
-                    <textarea class="form-control" rows="3" id="text"></textarea>
-              <div class="checkbox">
-                <label>
-                     <input  type="checkbox"> Check me out
-                </label>
-              </div>
-              <button type="submit" class="btn btn-default" id="save">Сохранить</button>
-              <button type="submit" class="btn btn-success" id="load">Загрузить</button>
-            </form>
+    <h1>Другофильтр</h1>
+    <div class="container">
+        <div class="drugofilter">
+            <div class="drugofilter-header">
+                <h2>Выберите друзей</h2>
+            </div>
+            <div class="drugofilter-body">
+               <div class="drugofilter-body-search">
+                   <div class="col-sm-6 col-xs-6 left">
+                     <div class="wrap">
+                          <span class="glyphicon glyphicon-search"></span> <input type="text" value="" placeholder="Начните вводить имя друга">
+                      </div>
+                   </div>
+                   <div class="col-sm-6 col-xs-6 right">
+                       <input type="text" value="" placeholder="Название">
+                   </div>
+               </div>
+                <div class="friends">
+                       <div class="col-sm-6 all-friends">
+                          <h2>Ваши друзья:</h2>
+                          <hr>
+                           <ul>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-plus"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-plus"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-plus"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-plus"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-plus"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-plus"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               
+                           </ul>
+                       </div>
+                       <div class="col-sm-6 add-friends">
+                         <h2>Друзья в списке:</h2>
+                          <hr>
+                           <ul>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-remove"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                               <li>
+                                   <img src="img/user.jpg" alt="">
+                                   <h3>Александр Горбань</h3>
+                                   <span class="glyphicon glyphicon-remove"></span>
+                                   <div class="clearfix"></div>
+                                   <hr>
+                               </li>
+                           </ul>
+                       </div>
+                   </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="drugofilter-footer">
+                <button type="button" class="btn btn-default">Сохранить</button>
+            </div>
         </div>
-    
+    </div>
     <!-- build:js js/main.min.js -->   
     <script src="js/main.js"></script>
     <!-- endbuild -->

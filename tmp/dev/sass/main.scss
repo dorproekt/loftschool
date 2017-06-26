@@ -1,72 +1,121 @@
 @import "reset";
-@import "grid";
+
 
 body{
-    font-family: Verdana, Tahoma;
+    font-family: Tahoma;
+    font-size: 14px;
+    background: #999;
 }
 
 h1{
+    color: #ff8663;
     text-align: center;
     font-size: 32px;
-    color: crimson;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
-main{
-    margin: 50px 0 0 0;
+h2{
+    color: #fff;
+    font-size: 24px;
+    padding: 10px;
 }
 
-.accardion{
-    text-align: center;
-    ul{
-        li{
-            font-size: 14px;
-            text-align: left;
-            background: #e7e7e7;
-            border-radius: 20px;
-            &:hover{
-                cursor: pointer;
-            }
-            &:nth-child(even) .title{
-                background: #e7e7e7;
-                color: #000;
-            }
-            .title{
-                background: #696666;
-                margin: 5px 0;
-                padding: 20px;
-                border-radius: 20px;
-                color: #fff;
-                h2{
-                   &:after{
-                        content: "";
-                        border: 8px solid transparent;	
-                        border-top: 8px solid #ff8663;
-                       float: right;
-                    } 
-                }
-            }
-            .description{
-                display: none;
-                padding: 5px 20px 10px 20px;
-                height: 100px;
-                overflow: hidden;
-                ul{
-                    li{
-                        margin: 7px 0;
-                    }
-                }
-            }
-        }
-        li.active{
-            .title{
-                background: #ff8663;
-                color: #fff;
-                h2{
-                   &:after{
-                        border-bottom: 8px solid #fff;
-                    } 
-                }
-            }
-        }
+.drugofilter{
+    background: #fff;
+    border-radius: 10px;
+}
+
+.drugofilter-header{
+    background: #ff8663;
+    border-radius: 10px 10px 0 0;
+}
+
+.drugofilter-body-search{
+    background: #f0f0f0;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+input{
+    width: 95%;
+    padding: 7px;
+    border: none;
+}
+
+input{
+    border-radius: 10px;
+}
+
+input::placeholder{
+    color: #9f9f9f;
+}
+
+.wrap{
+    background: #fff;
+    border-radius:10px;
+}
+
+span{
+    padding: 0 0 0 7px;
+    color: #9f9f9f;
+}
+
+.friends{
+    background: #fff;
+}
+
+.friends img{
+    width: 80px;
+    border-radius: 50%;
+    float: left;
+}
+
+.friends h2{
+    font-size: 22px;
+    color: #4f4f4f;
+}
+
+.friends h3{
+    line-height: 80px;
+    margin-left: 15px;
+    float: left;
+}
+
+.friends span{
+    line-height: 80px;
+    float: right;
+    font-size: 20px;
+    margin-right: 10px;
+    &:hover{
+        cursor: pointer;
     }
+}
+
+.all-friends{
+    max-height: 400px;
+    overflow-y: scroll;
+    background: #fff;
+}
+
+li:hover{
+    background: #f0f0f0;
+}
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.drugofilter-footer{
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 0 0 10px 10px;
+    text-align: right;
+}
+
+.btn-default:hover{
+    background: #ff8663;
+    color: #fff;
+    border-color: #ff8663;
 }
