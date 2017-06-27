@@ -1,12 +1,25 @@
-let getLocation = document.querySelector("#getLocation");
+let inputAllFriends = document.getElementById("serchAllFriends");
+let inputAddFriends = document.getElementById("serchAddFriends");
+let allFriends = document.querySelectorAll(".all-friends li");
+let addFriends = document.querySelectorAll(".add-friends li");
 
-getLocation.addEventListener("click", () => {
-    navigator.geolocation.getCurrentPosition(addPos, () =>{
-        alert("Err!!");
-    });
-});
+inputAllFriends.addEventListener("input", () =>{search (inputAllFriends, allFriends)});
+inputAddFriends.addEventListener("input", () =>{search (inputAddFriends, addFriends)});
 
-function addPos(e){
-    console.log(e.coords.latitude, e.coords.longitude);
-    console.log(e);
+//поиск по друзьям
+function search (input, friendColl){
+    let serchStr = '';
+    serchStr = input.value.toLowerCase();
+    
+    for(item of friendColl){
+        let friend = item.querySelector("h3").innerText.toLowerCase();
+        
+        if(serchStr === friend.slice(0, serchStr.length)){
+            item.style.display = "block";
+        }else{
+            item.style.display = "none";
+        }
+    }
 }
+
+
