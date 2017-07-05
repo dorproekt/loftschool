@@ -65,24 +65,24 @@ span{
     background: #fff;
 }
 
-.friends img{
+.selected img, .friends img{
     width: 80px;
     border-radius: 50%;
     float: left;
 }
 
-.friends h2{
+.selected h2, .friends h2{
     font-size: 22px;
     color: #4f4f4f;
 }
 
-.friends h3{
+.selected h3, .friends h3{
     line-height: 80px;
     margin-left: 15px;
     float: left;
 }
 
-.friends span{
+.selected span, .friends span{
     line-height: 80px;
     float: right;
     font-size: 20px;
@@ -92,14 +92,16 @@ span{
     }
 }
 
-.all-friends{
+.all-friends, .add-friends{
     max-height: 400px;
+    min-height: 400px;
     overflow-y: scroll;
     background: #fff;
 }
 
 li:hover{
     background: #f0f0f0;
+    cursor: move;
 }
 
 hr{
@@ -118,4 +120,20 @@ hr{
     background: #ff8663;
     color: #fff;
     border-color: #ff8663;
+}
+
+.selected{
+    width: 500px;
+    position: absolute;
+    list-style-type: none;
+    z-index: 1000;
+}
+
+#test{
+    width: 100px;
+    height: 100px;
+    background-color: bisque;
+    &:hover{
+        cursor: pointer;
+    }
 }
