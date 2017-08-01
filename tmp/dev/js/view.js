@@ -5,7 +5,7 @@ var View = {
         var templateElement = document.getElementById(templateName);
         templateSourse = templateElement.innerHTML;
         rendernFn = Handlebars.compile(templateSourse);
-        
+
         return rendernFn(model);
     }
 }
