@@ -78,17 +78,11 @@ var Model = {
         });
     },
     
-    getMessage: function(photos){
+    getMessage: function(photosId){
         return new Promise(function(resolve, reject){
-            let arr = [];
-            for(let i = 0; i < photos.length;  i++){
-                 VK.api("photos.getComments", {photo_id: photos[i]["pid"]}, function(response){
-                     arr[i] = {};
-                     arr[i]["message"] = response.response[i]["message"];
-                    resolve(arr);
-                 });
-            }
-
+             VK.api("photos.getComments", {photo_id: photosId}, function(response){
+                resolve(response.response);
+             });
         });
     }
 }

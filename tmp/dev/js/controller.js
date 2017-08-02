@@ -22,25 +22,17 @@ var Controller = {
     },
     photosRoute: function(){
         return Model.getPhotos().then(function(photos){
-           
-            Model.getMessage(photos).then(function(res){
-                /*console.log(photos); 
-                console.log(res);*/
-                for(let i = 0; i < res.length; i++){
-                   console.log(res[i]); 
-                }        
-                let resul = [];
-                for(let i = 0; i < photos.length; i++){
-
-                    resul[i] = {};
-                    resul[i] = photos[i];
-                    //resul[i].message = res[i].message;
-                }
-                console.log(resul);
-                
-                results.innerHTML = View.render('photos', {list: res});
-            });
+           let res = [];
+            for(let i = 0; i < photos.length; i++){
+                Model.getMessage(photos[i]["pid"]).then(function(r){
+                    /*console.log(photos); 
+                    console.log(res);*/
+                    res = r;
+                });
+            }
             
+            console.log(res);
+            results.innerHTML = View.render('photos', {list: res});
         });  
     }
 }
